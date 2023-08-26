@@ -12,7 +12,7 @@ namespace testApi
 
             var result = controller.Get();
 
-            Assert.True(result.Count() > 0);
+            Assert.True(result.Any());
         }
     }
 }
