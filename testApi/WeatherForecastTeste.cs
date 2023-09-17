@@ -14,5 +14,19 @@ namespace testApi
 
             Assert.True(result.Any());
         }
+
+
+        [Fact]
+        public void DeveRetornarListaVaziaQuandoNenhumaPrevisaoEncontrada()
+        {
+
+            var controller = new WeatherForecastController();
+
+            controller.Summaries = new string[0];
+
+            var result = controller.Get();
+
+            Assert.Empty(result);
+        }
     }
 }
