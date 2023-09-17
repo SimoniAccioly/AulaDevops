@@ -17,16 +17,32 @@ namespace testApi
 
 
         [Fact]
-        public void DeveRetornarListaVaziaQuandoNenhumaPrevisaoEncontrada()
+        public void DeveRetornarListaValidaDePrevisoesTempo()
         {
 
             var controller = new WeatherForecastController();
 
-            controller.Summaries = Array.Empty<string>();
-
             var result = controller.Get();
 
-            Assert.Empty(result);
+            Assert.True(result.Any());
+
+            Assert.Equal(5, result.Count());
+
+            var currentDate = DateTime.Now;
+            foreach (var forecast in result)
+            {
+                Assert.True(forecast.Date > currentDate);
+            }
+
+            foreach (var forecast in result)
+            {
+                Assert.InRange(forecast.TemperatureC, -20, 55);
+            }
+
+            foreach (var forecast in result)
+            {
+                Assert.Contains(forecast.Summary, controller.Summaries);
+            }
         }
     }
 }
