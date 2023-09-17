@@ -22,7 +22,7 @@ namespace testApi
 
             var controller = new WeatherForecastController();
 
-            controller.Summaries = new string[0];
+            controller.Summaries = Array.Empty<string>();
 
             var result = controller.Get();
 
